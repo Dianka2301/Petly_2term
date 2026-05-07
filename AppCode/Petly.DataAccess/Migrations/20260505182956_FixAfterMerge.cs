@@ -1,96 +1,66 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Petly.DataAccess.Migrations
 {
-    /// <inheritdoc />
     public partial class FixAfterMerge : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "SuccessStories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PetId = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    StoryText = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ImageUrl = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SuccessStories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SuccessStories_pet_PetId",
-                        column: x => x.PetId,
-                        principalTable: "pet",
-                        principalColumn: "petId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
-                name: "ViewedPets",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    PetId = table.Column<int>(type: "int", nullable: false),
-                    ViewedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ViewedPets", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ViewedPets_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ViewedPets_pet_PetId",
-                        column: x => x.PetId,
-                        principalTable: "pet",
-                        principalColumn: "petId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            migrationBuilder.Sql(@"
+                CREATE TABLE IF NOT EXISTS `SuccessStories` (
+                    `Id` int NOT NULL AUTO_INCREMENT,
+                    `PetId` int NOT NULL,
+                    `Title` longtext CHARACTER SET utf8mb4 NOT NULL,
+                    `StoryText` longtext CHARACTER SET utf8mb4 NOT NULL,
+                    `ImageUrl` longtext CHARACTER SET utf8mb4 NULL,
+                    `CreatedAt` datetime(6) NOT NULL,
+                    PRIMARY KEY (`Id`),
+                    CONSTRAINT `FK_SuccessStories_pet_PetId`
+                        FOREIGN KEY (`PetId`) REFERENCES `pet` (`petId`)
+                        ON DELETE CASCADE
+                ) CHARACTER SET=utf8mb4;
+            ");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SuccessStories_PetId",
-                table: "SuccessStories",
-                column: "PetId");
+            migrationBuilder.Sql(@"
+                CREATE INDEX IF NOT EXISTS `IX_SuccessStories_PetId`
+                ON `SuccessStories` (`PetId`);
+            ");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_ViewedPets_PetId",
-                table: "ViewedPets",
-                column: "PetId");
+            migrationBuilder.Sql(@"
+                CREATE TABLE IF NOT EXISTS `ViewedPets` (
+                    `Id` int NOT NULL AUTO_INCREMENT,
+                    `UserId` int NOT NULL,
+                    `PetId` int NOT NULL,
+                    `ViewedAt` datetime(6) NOT NULL,
+                    PRIMARY KEY (`Id`),
+                    CONSTRAINT `FK_ViewedPets_AspNetUsers_UserId`
+                        FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`)
+                        ON DELETE CASCADE,
+                    CONSTRAINT `FK_ViewedPets_pet_PetId`
+                        FOREIGN KEY (`PetId`) REFERENCES `pet` (`petId`)
+                        ON DELETE CASCADE
+                ) CHARACTER SET=utf8mb4;
+            ");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_ViewedPets_UserId",
-                table: "ViewedPets",
-                column: "UserId");
+            migrationBuilder.Sql(@"
+                CREATE INDEX IF NOT EXISTS `IX_ViewedPets_PetId`
+                ON `ViewedPets` (`PetId`);
+            ");
+
+            migrationBuilder.Sql(@"
+                CREATE INDEX IF NOT EXISTS `IX_ViewedPets_UserId`
+                ON `ViewedPets` (`UserId`);
+            ");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "SuccessStories");
-
-            migrationBuilder.DropTable(
-                name: "ViewedPets");
+            migrationBuilder.Sql(@"DROP TABLE IF EXISTS `ViewedPets`;");
+            migrationBuilder.Sql(@"DROP TABLE IF EXISTS `SuccessStories`;");
         }
     }
 }
