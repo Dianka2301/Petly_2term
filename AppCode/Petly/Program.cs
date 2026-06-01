@@ -42,6 +42,7 @@ builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<SuccessStoryService>();
 builder.Services.AddScoped<DashboardService>();
 builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<SearchHistoryService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));

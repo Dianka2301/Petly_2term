@@ -122,6 +122,7 @@
 window.onload = function () {
 
     const input = document.getElementById("searchInput");
+    let debounceTimer;
 
     input.oninput = function () {
 
@@ -139,6 +140,20 @@ window.onload = function () {
             }
 
         });
+
+        // Record search history with debounce (500ms delay)
+        clearTimeout(debounceTimer);
+        if (value.trim().length > 0) {
+            debounceTimer = setTimeout(() => {
+                fetch('/api/SearchHistoryApi/RecordSearch', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query: value })
+                }).catch(err => console.log('Search history recording failed:', err));
+            }, 500);
+        }
     };
 
 };

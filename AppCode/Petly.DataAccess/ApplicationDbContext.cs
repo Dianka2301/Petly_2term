@@ -25,6 +25,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
 
     public DbSet<Notification> Notifications { get; set; }
 
+    public DbSet<SearchHistory> SearchHistories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,6 +38,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
             .HasOne(n => n.User)
             .WithMany(u => u.Notifications)
             .HasForeignKey(n => n.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<SearchHistory>()
+            .HasOne(sh => sh.User)
+            .WithMany()
+            .HasForeignKey(sh => sh.UserId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

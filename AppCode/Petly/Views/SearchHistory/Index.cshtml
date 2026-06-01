@@ -1,0 +1,124 @@
+@model List<Petly.Models.SearchHistory>
+
+@{
+    ViewData["Title"] = "Історія пошуку";
+}
+
+<section class="search-history-page">
+    <h1 class="search-history-title">Історія пошуку</h1>
+
+    @if (!Model.Any())
+    {
+        <p>Ви ще не шукали тварин 🔍</p>
+    }
+    else
+    {
+        <div class="search-history-actions">
+            <form asp-action="Clear" method="post" onsubmit="return confirm('Ви впевнені, що хочете очистити всю історію пошуку?');">
+                <button type="submit" class="btn-clear">Очистити історію</button>
+            </form>
+        </div>
+
+        <div class="search-history-list">
+            @foreach (var item in Model)
+            {
+                <div class="search-history-item">
+                    <div class="search-history-content">
+                        <span class="search-query">@item.SearchQuery</span>
+                        <span class="search-date">@item.CreatedAt.ToString("dd.MM.yyyy HH:mm")</span>
+                    </div>
+                    <form asp-action="Delete" method="post" class="delete-form">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" class="btn-delete" title="Видалити">×</button>
+                    </form>
+                </div>
+            }
+        </div>
+    }
+</section>
+
+<style>
+.search-history-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.search-history-title {
+    color: #2c3e50;
+    margin-bottom: 24px;
+}
+
+.search-history-actions {
+    margin-bottom: 20px;
+}
+
+.btn-clear {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-clear:hover {
+    background: #c0392b;
+}
+
+.search-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.search-history-item {
+    background: #f3e6c9;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-history-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.search-query {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.search-date {
+    font-size: 12px;
+    color: #7f8c8d;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+}
+</style>

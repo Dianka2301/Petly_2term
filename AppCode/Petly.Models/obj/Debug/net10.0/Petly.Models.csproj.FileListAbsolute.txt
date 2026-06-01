@@ -37,3 +37,16 @@ C:\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Mod
 C:\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\refint\Petly.Models.dll
 C:\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Models.pdb
 C:\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\ref\Petly.Models.dll
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\bin\Debug\net10.0\Petly.Models.deps.json
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\bin\Debug\net10.0\Petly.Models.dll
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\bin\Debug\net10.0\Petly.Models.pdb
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Models.csproj.AssemblyReference.cache
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Models.GeneratedMSBuildEditorConfig.editorconfig
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Models.AssemblyInfoInputs.cache
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Models.AssemblyInfo.cs
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Models.csproj.CoreCompileInputs.cache
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Models.sourcelink.json
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Models.dll
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\refint\Petly.Models.dll
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\Petly.Models.pdb
+\\desktop-fl1jai3\Users\Діана\Petly_2term\AppCode\Petly.Models\obj\Debug\net10.0\ref\Petly.Models.dll
